@@ -51,32 +51,74 @@ void init(char **argv) {
         options.push_back(opt);
     }
 }
+void output(double sum) {
+    if (sum < 0) 
+        cout << "------No Arbitrage.\n";
+    else 
+        cout << "------\033[41;36m Arbitrage: " << sum << "\033[0m\n";
+}
 /* check begin */
 void put_call_parity(Option &opt) {
-
+    double sum;
+    cout << "--Put Call Parity\n";
+    if (opt.put_price == 0)
+        return cout << "----No Price\n", void();
+    cout << "----Sell a put, Sell a Taiex, Buy a call.\n";
+    sum = opt.put_buy + taiex_buy - opt.call_sell - opt.strike_price - 3;
+    output(sum);
+    cout << "----Buy a put, Buy a Taiex, Sell a call.\n";
+    sum = - opt.put_sell - taiex_sell + opt.call_buy + opt.strike_price - 3;
+    output(sum);
 }
-void put_call_future_parity() {
-
+void put_call_future_parity(Option &opt) {
+    double sum;
+    cout << "--Put Call Future Parity\n";
+    if (opt.put_price == 0)
+        return cout << "----No Price\n", void();
+    cout << "----Sell a put, Sell a future, Buy a call.\n";
+    sum = opt.put_buy + taiex_future_buy - opt.call_sell - opt.strike_price - 3;
+    output(sum);
+    cout << "----Buy a put, Buy a future, Sell a call.\n";
+    sum = - opt.put_sell - taiex_future_sell + opt.call_buy + opt.strike_price - 3;
+    output(sum);
 }
-void Theorem_3() {
-
+void Theorem_3(Option &opt) {
+    double sum;
+    cout << "--Theorem 3\n";
+    cout << "----Sell a call, Buy a stack.\n";
+    sum = opt.call_buy - taiex_sell - 2;
+    output(sum);
+    cout << "----Sell a put.\n";
+    if (opt.put_price == 0)
+        return cout << "------No Price\n", void();
+    sum = opt.put_buy - opt.strike_price - 1;
+    output(sum);
 }
-void Theorem_4() {
-
+void Theorem_4(Option &opt) {
+    double sum;
+    cout << "--Theorem 4\n";
+    cout << "----Buy a call, Sell a stock.\n";
+    sum = - opt.call_sell + max(taiex_sell - opt.strike_price, (double)0) + taiex_buy - taiex_sell - 2;
+    output(sum);
 }
-void Theorem_6() {
-
+void Theorem_6(Option &opt) {
+    double sum;
+    cout << "--Theorem 6\n";
+    if (opt.put_price == 0)
+        return cout << "----No Price\n", void();
+    cout << "----Buy a put, Buy a stock.\n";
+    sum = - opt.put_sell + max(opt.strike_price - taiex_buy, (double)0) - 2;
 }
 /* check  end  */
 void solve() {
     for (auto &opt : options) {
         cout << "**********************************\n";
-        cout << "履約價: " << opt.strike_price << '\n';
+        cout << "Strike Price: " << opt.strike_price << '\n';
         put_call_parity(opt);
-        put_call_future_parity();
-        Theorem_3();
-        Theorem_4();
-        Theorem_6();
+        put_call_future_parity(opt);
+        Theorem_3(opt);
+        Theorem_4(opt);
+        Theorem_6(opt);
     }
     cout << "**********************************\n";
 }
