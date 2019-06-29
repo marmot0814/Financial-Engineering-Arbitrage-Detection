@@ -1,3 +1,7 @@
+/*
+report: https://github.com/marmot0814/Financial-Engineering-Arbitrage-Detection/blob/master/HW12_0616014_%E6%A5%8A%E6%94%BF%E9%81%93.pdf
+*/
+
 #include <iostream>
 #include <cmath>
 #include <fstream>
