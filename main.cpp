@@ -34,7 +34,7 @@ void init(char **argv) {
     taiex_sell          = strtod(string(argv[4]));
     taiex_future_buy    = strtod(string(argv[5]));
     taiex_future_sell   = strtod(string(argv[6]));
-    ifstream fin(argv[1]); string input;
+    ifstream fin(argv[1]); string input; fin >> input;
     while (fin >> input) {
         for (auto &c : input)
             if (c == ',')
