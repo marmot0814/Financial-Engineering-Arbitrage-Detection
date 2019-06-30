@@ -71,10 +71,10 @@ void put_call_parity(Option &opt) {
     if (opt.put_price == 0)
         return cout << "----No Price\n", void();
     cout << "----Sell a put, Sell a Taiex, Buy a call.\n";
-    sum = opt.put_buy + taiex_buy - opt.call_sell - opt.strike_price - 3;
+    sum = opt.put_buy + taiex_buy - opt.call_sell - opt.strike_price * pv - 3;
     output(sum);
     cout << "----Buy a put, Buy a Taiex, Sell a call.\n";
-    sum = - opt.put_sell - taiex_sell + opt.call_buy + opt.strike_price - 3;
+    sum = - opt.put_sell - taiex_sell + opt.call_buy + opt.strike_price * pv - 3;
     output(sum);
 }
 void put_call_future_parity(Option &opt) {
@@ -83,10 +83,10 @@ void put_call_future_parity(Option &opt) {
     if (opt.put_price == 0)
         return cout << "----No Price\n", void();
     cout << "----Sell a put, Sell a future, Buy a call.\n";
-    sum = opt.put_buy + taiex_future_buy - opt.call_sell - opt.strike_price - 3;
+    sum = opt.put_buy + taiex_future_buy - opt.call_sell - opt.strike_price * pv - 3;
     output(sum);
     cout << "----Buy a put, Buy a future, Sell a call.\n";
-    sum = - opt.put_sell - taiex_future_sell + opt.call_buy + opt.strike_price - 3;
+    sum = - opt.put_sell - taiex_future_sell + opt.call_buy + opt.strike_price * pv - 3;
     output(sum);
 }
 void Theorem_3(Option &opt) {
