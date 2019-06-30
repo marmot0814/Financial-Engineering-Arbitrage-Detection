@@ -1,6 +1,9 @@
 /*
-report: https://github.com/marmot0814/Financial-Engineering-Arbitrage-Detection/blob/master/HW12_0616014_%E6%A5%8A%E6%94%BF%E9%81%93.pdf
-*/
+ * The following link is the report about this project.
+ * report: https://github.com/marmot0814/Financial-Engineering-Arbitrage-Detection/blob/master/HW12_0616014_%E6%A5%8A%E6%94%BF%E9%81%93.pdf
+ * The whole project can be found at github.
+ * github: https://github.com/marmot0814/Financial-Engineering-Arbitrage-Detection
+ */
 
 #include <iostream>
 #include <cmath>
