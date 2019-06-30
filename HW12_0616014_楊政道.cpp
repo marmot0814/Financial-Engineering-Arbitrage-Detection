@@ -104,7 +104,7 @@ void Theorem_3(Option &opt) {
 void Theorem_4(Option &opt) {
     double sum;
     cout << "--Theorem 4\n";
-    cout << "----Buy a call, Sell a stock.\n";
+    cout << "----Buy a call, Sell a stock, Lend PV(X) money.\n";
     sum = - opt.call_sell + max(taiex_buy - opt.strike_price * pv, (double)0) - 2;
     output(sum);
 }
@@ -113,7 +113,7 @@ void Theorem_6(Option &opt) {
     cout << "--Theorem 6\n";
     if (opt.put_price == 0)
         return cout << "----No Price\n", void();
-    cout << "----Buy a put, Buy a stock.\n";
+    cout << "----Buy a put, Buy a stock, Borrow PV(X) money.\n";
     sum = - opt.put_sell + max(opt.strike_price * pv - taiex_sell, (double)0) - 2;
 }
 /* check  end  */
